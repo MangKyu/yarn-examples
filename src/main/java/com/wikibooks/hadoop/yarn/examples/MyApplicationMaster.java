@@ -221,7 +221,6 @@ public class MyApplicationMaster {
       AllocateResponse response = amRMClient.allocate(0);
       for (Container container : response.getAllocatedContainers()) {
         allocatedContainers++;
-
         ContainerLaunchContext appContainer = createContainerLaunchContext(appMasterJar, containerEnv);
         LOG.info("Launching container " + allocatedContainers);
 
@@ -282,11 +281,7 @@ public class MyApplicationMaster {
     appContainer.setEnvironment(containerEnv);
     appContainer.setCommands(
         Collections.singletonList(
-            "$JAVA_HOME/bin/java" +
-                " -Xmx256M" +
-                " com.wikibooks.hadoop.yarn.examples.HelloYarn" +
-                " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
-                " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr"
+                "/home/mang/test"
         )
     );
 

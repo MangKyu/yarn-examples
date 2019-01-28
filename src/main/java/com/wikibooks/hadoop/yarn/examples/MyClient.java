@@ -125,7 +125,9 @@ public class MyClient {
    *
    */
   public MyClient() throws Exception  {
+    // Resource Manager와 통신하기 위한 YarnClient 생성
     createYarnClient();
+    // 관련 옵션들 초기화
     initOptions();
   }
 
@@ -477,9 +479,12 @@ public class MyClient {
   public static void main(String[] args) {
     boolean result = false;
     try {
+      // 사용자가 정의한 Client 생성
       MyClient client = new MyClient();
       LOG.info("Initializing Client");
       try {
+
+        // 사용자가 추가한 옵션들을 초기화한다.
         boolean doRun = client.init(args);
         if (!doRun) {
           System.exit(0);
@@ -489,6 +494,8 @@ public class MyClient {
         client.printUsage();
         System.exit(-1);
       }
+
+      // 사용자가 정의한 Client를 실행한다.
       result = client.run();
     } catch (Throwable t) {
       LOG.fatal("Error running CLient", t);
