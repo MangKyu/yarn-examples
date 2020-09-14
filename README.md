@@ -63,3 +63,12 @@ java.lang.InterruptedException
 
 Don't worry about it, above log is a unnecessary log which is a bug for hadoop.
 See YARN-1022: https://issues.apache.org/jira/browse/YARN-1022
+
+## Task Flow ##
+command: hadoop jar yarn-examples.jar com.wikibooks.hadoop.yarn.examples.MyClient -jar yarn-examples.jar -num_containers=1
+
+1. MyClient는 YarnClient를 통해 Container들을 실행시키기 위한 Application의 제출을 요청한다. 이를 위해서는 YARN의 Resource Manager와 Connect 해야한다.
+2. 해당 Application을 받은 ResourceManager는 ApplicationId를 반환한다.
+3. Client는 Resource Manager로 Application을 제출한다.
+4. 이후에 Application Master를 실행하고, 컨테이너들을 생성한다.
+5. 생성된 컨테이너들을 구동한다.
